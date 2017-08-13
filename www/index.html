@@ -1,65 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="cordova.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 </head>
-<body ng-app="demoApp" ng-init="testFunction()" ng-controller="mainController">
-  <input type="text" ng-model="name"><br><br>
-  hello {{name}}
-  <!-- ng- repeat to iterate over $scope.users (defined in mainController) -->
-  <div ng-repeat="friend in friends">
-    <ul>
-      <li>{{friend}}</li>
-    </ul>
-  </div>
-  <div ng-repeat="user in users">
-    <h3>{{user.name}}</h3>
-    <ul>
-      <li>Email: {{user.email}}
-      </li>
-      <li>Phone: {{user.phone}}</li>
-    </ul>
-  </div>
+<body>
+  hello
 </body>
-
-<script>
-  var demoApp = angular.module("demoApp", []);
-
-  demoApp.controller("mainController",
-    // this function can take as few or as many arguments as you want
-    function($scope, userService) {
-      $scope.name = " ";
-      $scope.friends = ["Courtney", "Breezy", "Clara", "Kaytlyn"];
-
-      $scope.testFunction = function() {
-        userService.doSomething().then(
-            function(success) {
-              console.log("Got data");
-              console.log(success.data);
-              $scope.users = success.data;
-            },
-            function(failure) {
-              console.log("Didn't get data");
-            }
-        );
-      };
-    }
-  );
-
-
-  demoApp.service("userService",
-      function($http) {
-        // $http has to return an object!
-        return {
-          doSomething: function() {
-            return $http.get("http://jsonplaceholder.typicode.com/users");
-          }
-
-        };
-      }
-    );
-
-  </script>
-  </html>
-
+</html>
